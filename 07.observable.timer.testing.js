@@ -33,3 +33,7 @@ setTimeout(function(){
 // 0
 // 1
 // 2 ...
+
+/*
+Events observable 盡量不要用 unsubscribe ，通常我們會使用 takeUntil，在某個事件發生後來完成 Event observable，這個部份我們之後會講到！
+*/
