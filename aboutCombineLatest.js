@@ -3,8 +3,8 @@
 // Ref: http://reactivex.io/documentation/operators/combinelatest.html
 // Ref: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/combinelatest.md
 
-
 var Rx = require('rxjs/Rx');
+
 
 /* Have staggering intervals, this is async(Timer 觸發 Stream 到第二個) */
 var source1 = Rx.Observable.interval(100)
