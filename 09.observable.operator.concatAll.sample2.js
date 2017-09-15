@@ -35,4 +35,12 @@ Output =>
 1
 0
 complete
+
+第一個 source 的效果仍然回分攤到每一個元素內.
+ex:
+
+0 -> sleep(1) -> 1
++map
++concatAll
+[obs1 do all task] -> sleep(1) -> [obs2 do all task]
 */
