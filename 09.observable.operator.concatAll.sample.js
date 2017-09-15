@@ -1,11 +1,5 @@
 'use strict';
-// Ref: https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/takeuntil.md
-
-/*
-當 timer 有兩個參數時，第一個參數代表要發出第一個值的等待時間(ms)，第二個參數代表第一次之後發送值的間隔時間，所以上面這段程式碼會先等一秒送出 1 之後每五秒送出 2, 3, 4, 5...。
-
-timer 第一個參數除了可以是數值(Number)之外，也可以是日期(Date)，就會等到指定的時間在發送第一個值。
-*/
+// Ref: http://ithelp.ithome.com.tw/articles/10187333
 
 var Rx = require('rxjs/Rx');
 
@@ -33,3 +27,30 @@ var subscriber = {
 source.map((v)=>{
     return Rx.Observable.of(`${v}`, `b`, `c`);
 }).concatAll().subscribe(subscriber);
+
+/*
+這裡可以看到 source observable 內部每次發送的值也是 observable，這時我們用 concatAll 就可以把 source 攤平成 example。
+0
+b
+c
+1
+b
+c
+2
+b
+c
+complete!
+*/
+
+source.map((v)=>{
+    return Rx.Observable.of(`${v}`, `b`, `c`);
+}).subscribe(subscriber);
+
+/*
+沒用 concatAll 攤平
+Output =>
+ArrayObservable { _isScalar: false, array: [ 'a', 'b', 'c' ], scheduler: null }
+ArrayObservable { _isScalar: false, array: [ 'a', 'b', 'c' ], scheduler: null }
+ArrayObservable { _isScalar: false, array: [ 'a', 'b', 'c' ], scheduler: null }
+complete!
+*/
