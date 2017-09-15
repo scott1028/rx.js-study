@@ -51,3 +51,6 @@ source.takeUntil(new Promise(function(res, rej){
 /*
 Events observable 盡量不要用 unsubscribe ，通常我們會使用 takeUntil，在某個事件發生後來完成 Event observable，這個部份我們之後會講到！
 */
+
+// 10秒後結束觸發 .complete
+source.takeUntil(Rx.Observable.timer(1000 * 10)).subscribe(subscriber);
